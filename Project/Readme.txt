@@ -1,0 +1,4 @@
+The Linux System Information and Resource Monitoring Tool is a C-based Linux application designed to collect and display important information about a system’s health and performance. 
+It uses the /proc filesystem to access kernel-provided information and monitors resources such as CPU usage, memory usage, disk usage, and running processes. 
+The collected data is processed and presented in a simple, user-friendly terminal format, allowing users to easily understand current system resource utilization. 
+The project demonstrates practical concepts of Linux system programming, process management, file systems, and resource monitoring.
