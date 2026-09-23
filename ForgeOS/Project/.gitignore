@@ -1,0 +1,16 @@
+# Object files
+*.o
+
+# Main executable
+forgeos_monitor
+
+# Test executables
+cpu_test
+disk_test
+memory_test
+monitor_test
+process_test
+system_test
+
+# Editor/temporary files
+*~
