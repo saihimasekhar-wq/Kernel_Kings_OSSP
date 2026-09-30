@@ -1,0 +1,14 @@
+# Compiled files
+*.o
+forgeos
+
+# Backup
+Project_backup/
+
+# Editor files
+*~
+*.swp
+
+# OS-generated files
+.DS_Store
+

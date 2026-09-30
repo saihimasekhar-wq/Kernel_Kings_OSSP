@@ -126,20 +126,58 @@ void display_process_list(ProcessInfo processes[], int count)
 
     printf("\n");
     printf("PROCESS MONITOR\n");
+    printf("==============================================================\n");
+
+    /* First display RUNNING processes */
+    printf("\nRUNNING PROCESSES (R)\n");
     printf("--------------------------------------------------------------\n");
     printf("%-8s %-35s %-8s\n", "PID", "NAME", "STATE");
     printf("--------------------------------------------------------------\n");
 
+    int running_count = 0;
+
     for (int i = 0; i < count; i++)
     {
-        printf(
-            "%-8d %-35.35s %-8c\n",
-            processes[i].pid,
-            processes[i].name,
-            processes[i].state
-        );
+        if (processes[i].state == 'R')
+        {
+            printf(
+                "%-8d %-35.35s %-8c\n",
+                processes[i].pid,
+                processes[i].name,
+                processes[i].state
+            );
+
+            running_count++;
+        }
     }
 
+    printf("Running processes: %d\n", running_count);
+
+
+    /* Then display SLEEPING processes */
+    printf("\nSLEEPING PROCESSES (S)\n");
     printf("--------------------------------------------------------------\n");
-    printf("Total processes displayed: %d\n", count);
+    printf("%-8s %-35s %-8s\n", "PID", "NAME", "STATE");
+    printf("--------------------------------------------------------------\n");
+
+    int sleeping_count = 0;
+
+    for (int i = 0; i < count; i++)
+    {
+        if (processes[i].state == 'S')
+        {
+            printf(
+                "%-8d %-35.35s %-8c\n",
+                processes[i].pid,
+                processes[i].name,
+                processes[i].state
+            );
+
+            sleeping_count++;
+        }
+    }
+
+    printf("Sleeping processes: %d\n", sleeping_count);
+
+    printf("==============================================================\n");
 }
