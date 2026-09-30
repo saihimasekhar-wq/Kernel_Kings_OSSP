@@ -1,4 +1,4 @@
-# ForgeOS - Linux System Monitor with ShellForge
+# Linux System Monitor with ShellForge
 
 ## Overview
 
