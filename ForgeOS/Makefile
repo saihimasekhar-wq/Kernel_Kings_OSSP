@@ -2,7 +2,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Iinclude
 
-TARGET = forgeos
+TARGET = shellforge
 
 SRC = \
     src/main.c \
