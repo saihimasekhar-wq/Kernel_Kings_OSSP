@@ -1,0 +1,123 @@
+BANKER"S ALGORITH CODE
+
+
+#include <stdio.h>
+
+int main()
+{
+    int n, r;
+    int i, j, k;
+    int count = 0;
+    int safe, safeFound;
+
+    printf("Enter number of processes:\n");
+    scanf("%d", &n);
+
+    printf("Enter number of resource types:\n");
+    scanf("%d", &r);
+
+    int alloc[n][r], max[n][r], need[n][r];
+    int avail[r];
+    int safeSequence[n];
+    int finish[n];
+
+    printf("Enter allocation matrix:\n");
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < r; j++)
+        {
+            scanf("%d", &alloc[i][j]);
+        }
+    }
+
+    printf("Enter max matrix:\n");
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < r; j++)
+        {
+            scanf("%d", &max[i][j]);
+        }
+    }
+
+    printf("Enter available resources:\n");
+    for (i = 0; i < r; i++)
+    {
+        scanf("%d", &avail[i]);
+    }
+
+    /* Calculate Need matrix */
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < r; j++)
+        {
+            need[i][j] = max[i][j] - alloc[i][j];
+        }
+    }
+
+    /* Initialize Finish array */
+    for (i = 0; i < n; i++)
+    {
+        finish[i] = 0;
+    }
+
+    /* Find a safe sequence */
+    while (count < n)
+    {
+        safeFound = 0;
+
+        for (i = 0; i < n; i++)
+        {
+            if (finish[i] == 0)
+            {
+                safe = 1;
+
+                for (j = 0; j < r; j++)
+                {
+                    if (need[i][j] > avail[j])
+                    {
+                        safe = 0;
+                        break;
+                    }
+                }
+
+                if (safe)
+                {
+                    for (k = 0; k < r; k++)
+                    {
+                        avail[k] += alloc[i][k];
+                    }
+
+                    safeSequence[count] = i;
+                    count++;
+
+                    finish[i] = 1;
+                    safeFound = 1;
+                }
+            }
+        }
+
+        if (safeFound == 0)
+        {
+            printf("\nSystem is not in a safe state.\n");
+            printf("Deadlock may occur.\n");
+            return 0;
+        }
+    }
+
+    printf("\nSystem is in a safe state.\n");
+    printf("Safe sequence: ");
+
+    for (i = 0; i < n; i++)
+    {
+        printf("P%d", safeSequence[i]);
+
+        if (i < n - 1)
+        {
+            printf(" -> ");
+        }
+    }
+
+    printf("\n");
+
+    return 0;
+}
